@@ -76,11 +76,6 @@ function Home() {
       });
   };
 
-  const handleStateChange = (e) => {
-    console.log(e);
-    setState(e);
-  };
-
   return (
     <>
       <div className="app_left">
@@ -108,7 +103,7 @@ function Home() {
             onClick={(e) => setCasesType("cases")}
             className="infoBox"
             title="Coronavirus Cases"
-            isRed
+            color={"red"}
             active={casesType === "cases"}
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={numeral(countryInfo.cases).format("0.0a")}
@@ -117,6 +112,7 @@ function Home() {
             onClick={(e) => setCasesType("recovered")}
             className="infoBox"
             title="Recovered"
+            color={"green"}
             active={casesType === "recovered"}
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={numeral(countryInfo.recovered).format("0.0a")}
@@ -125,7 +121,7 @@ function Home() {
             onClick={(e) => setCasesType("deaths")}
             className="infoBox"
             title="Deaths"
-            isRed
+            color={"gray"}
             active={casesType === "deaths"}
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={numeral(countryInfo.deaths).format("0.0a")}
@@ -140,7 +136,7 @@ function Home() {
               zoom={mapZoom}
             />
           ) : (
-            <CountryDetail />
+            <CountryDetail countryId={countryInfo.iso2} />
           )}
         </div>
       </div>

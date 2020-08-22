@@ -14,12 +14,35 @@
   border-color: red;
 }
 
+.infoBox--green {
+  border-color: #00aa00;
+}
+
+.infoBox--gray {
+  border-color: #767676;
+}
+
+.infoBox--yellow {
+  border-color: #f4c363;
+}
+
 .infoBox_cases--green {
-  color: lightgreen !important;
+  color: #00aa00 !important;
+}
+
+.infoBox_cases--gray {
+  color: #767676 !important;
+}
+
+.infoBox_cases--red {
+  color: #cc1034 !important;
+}
+
+.infoBox_cases--yellow {
+  color: #f4c363 !important;
 }
 
 .infoBox_cases {
-  color: #cc1034;
   font-weight: 600;
   font-size: 1.75rem;
   margin-bottom: 0.5rem;

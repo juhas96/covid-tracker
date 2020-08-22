@@ -6,3 +6,9 @@
 .button_row {
   padding: 10px;
 }
+
+.graph_row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px 0 10px;
+}

@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import LineGraph from "../../LineGraph/LineGraph";
 import Divider from "@material-ui/core/Divider";
 import { dataService } from "../../../stateService";
+import { countryData } from "../../../services/dataService";
 
 const casesTypeColors = {
   cases: {
@@ -28,6 +29,11 @@ const casesTypeColors = {
 };
 
 function CustomPopup({ data, casesType = "cases" }) {
+  const handleStateChange = (e) => {
+    countryData.send(e);
+    dataService.send("detail");
+  };
+
   const showDataOnMap = (data, casesType) =>
     data.map((country) => (
       <Circle
@@ -67,7 +73,7 @@ function CustomPopup({ data, casesType = "cases" }) {
             </div>
             <div
               className="info-button"
-              onClick={() => dataService.send("detail")}
+              onClick={() => handleStateChange(country)}
             >
               <Button size="small" variant="contained">
                 Show more info
