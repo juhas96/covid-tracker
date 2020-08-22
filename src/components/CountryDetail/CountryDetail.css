@@ -1,0 +1,8 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.button_row {
+  padding: 10px;
+}

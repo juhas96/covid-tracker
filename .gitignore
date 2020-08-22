@@ -14,6 +14,7 @@
 
 ./src/firebase.js
 firebase-debug.log
+package-lock.json
 .firebaserc
 firebase.json
 .firebase
@@ -30,3 +31,4 @@ yarn-debug.log*
 yarn-error.log*
 src/firebase.js
 .vscode/settings.json
+package-lock.json

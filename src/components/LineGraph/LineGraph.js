@@ -47,40 +47,47 @@ const options = {
   },
 };
 
-const buildChartData = (data, casesType) => {
+const buildChartData = (data, casesType, worldWide) => {
   let chartData = [];
   let lastDataPoint;
-  for (let date in data.cases) {
+  let dateArray = data.cases ? data.cases : data.timeline.cases;
+  for (let date in dateArray) {
     if (lastDataPoint) {
       let newDataPoint = {
         x: date,
-        y: data[casesType][date] - lastDataPoint,
+        y: worldWide
+          ? data[casesType][date] - lastDataPoint
+          : data.timeline[casesType][date] - lastDataPoint,
       };
       chartData.push(newDataPoint);
     }
-    lastDataPoint = data[casesType][date];
+    lastDataPoint = worldWide
+      ? data[casesType][date]
+      : data.timeline[casesType][date];
   }
   return chartData;
 };
 
-function LineGraph({ casesType }) {
+function LineGraph({ casesType, worldWide, country }) {
   const [data, setData] = useState({});
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          let chartData = buildChartData(data, casesType);
-          setData(chartData);
-          console.log(chartData);
-        });
-    };
+  const fetchData = async (worldWide, country, casesType) => {
+    const endpoint = worldWide === true ? "all" : country;
+    await fetch(
+      `https://disease.sh/v3/covid-19/historical/${endpoint}?lastdays=120`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        let chartData = buildChartData(data, casesType, worldWide);
+        setData(chartData);
+      });
+  };
 
-    fetchData();
-  }, [casesType]);
+  useEffect(() => {
+    fetchData(worldWide, country, casesType);
+  }, [casesType, worldWide, country]);
 
   return (
     <div>
