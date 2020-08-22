@@ -16,6 +16,8 @@ import Map from "../../components/Map/Map/Map";
 import CountryDetail from "../../components/CountryDetail/CountryDetail";
 import "leaflet/dist/leaflet.css";
 import { subscriber } from "../../stateService";
+import { countryData } from "../../services/dataService";
+import { loadingState } from "../../services/loadingService";
 
 function Home() {
   const [country, setInputCountry] = useState("worldwide");
@@ -61,6 +63,7 @@ function Home() {
 
   const onCountryChange = async (e) => {
     const countryCode = e.target.value;
+    loadingState.send("loading");
 
     const url =
       countryCode === "worldwide"
@@ -71,9 +74,11 @@ function Home() {
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
+        countryData.send(data);
         setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
         setMapZoom(4);
       });
+    loadingState.send("normal");
   };
 
   return (
