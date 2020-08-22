@@ -14,11 +14,12 @@ body {
 }
 
 .map_card {
-  height: 65vh;
+  max-height: 65vh;
   background-color: white;
   border-radius: 20px;
   margin-top: 16px;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+  overflow: auto;
 }
 
 .app_dropdown {

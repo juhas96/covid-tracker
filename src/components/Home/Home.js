@@ -136,7 +136,7 @@ function Home() {
               zoom={mapZoom}
             />
           ) : (
-            <CountryDetail countryId={countryInfo.iso2} />
+            <CountryDetail />
           )}
         </div>
       </div>
@@ -146,7 +146,7 @@ function Home() {
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
             <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} worldWide={true} />
+            <LineGraph casesType={casesType} worldWide={true} daily={true} />
           </div>
         </CardContent>
       </Card>

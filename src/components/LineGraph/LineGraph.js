@@ -47,28 +47,36 @@ const options = {
   },
 };
 
-const buildChartData = (data, casesType, worldWide) => {
+const buildChartData = (data, casesType, worldWide, daily) => {
   let chartData = [];
   let lastDataPoint;
   let dateArray = data.cases ? data.cases : data.timeline.cases;
   for (let date in dateArray) {
-    if (lastDataPoint) {
+    if (daily === true) {
+      if (lastDataPoint) {
+        let newDataPoint = {
+          x: date,
+          y: worldWide
+            ? data[casesType][date] - lastDataPoint
+            : data.timeline[casesType][date] - lastDataPoint,
+        };
+        chartData.push(newDataPoint);
+      }
+      lastDataPoint = worldWide
+        ? data[casesType][date]
+        : data.timeline[casesType][date];
+    } else {
       let newDataPoint = {
         x: date,
-        y: worldWide
-          ? data[casesType][date] - lastDataPoint
-          : data.timeline[casesType][date] - lastDataPoint,
+        y: worldWide ? data[casesType][date] : data.timeline[casesType][date],
       };
       chartData.push(newDataPoint);
     }
-    lastDataPoint = worldWide
-      ? data[casesType][date]
-      : data.timeline[casesType][date];
   }
   return chartData;
 };
 
-function LineGraph({ casesType, worldWide, country }) {
+function LineGraph({ casesType, worldWide, country, daily }) {
   const [data, setData] = useState({});
 
   const fetchData = async (worldWide, country, casesType) => {
@@ -80,14 +88,14 @@ function LineGraph({ casesType, worldWide, country }) {
         return response.json();
       })
       .then((data) => {
-        let chartData = buildChartData(data, casesType, worldWide);
+        let chartData = buildChartData(data, casesType, worldWide, daily);
         setData(chartData);
       });
   };
 
   useEffect(() => {
     fetchData(worldWide, country, casesType);
-  }, [casesType, worldWide, country]);
+  }, [casesType, worldWide, country, daily]);
 
   return (
     <div>
