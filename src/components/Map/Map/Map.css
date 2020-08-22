@@ -11,6 +11,17 @@
   border-radius: 12px;
 }
 
+@media (max-width: 900px) {
+  .info-flag {
+    width: 50% !important;
+    height: 75px !important;
+  }
+
+  .info-container {
+    height: 450px !important;
+  }
+}
+
 .info-flag img {
   width: 100px;
   border-radius: 5px;
