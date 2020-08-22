@@ -9,8 +9,10 @@
 
 .infoBox_row {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   padding: 0 10px 0 10px;
+  flex-wrap: wrap;
 }
 
 .graph_row {
@@ -18,6 +20,24 @@
   justify-content: space-evenly;
   margin-top: 20px;
   padding: 10px;
+}
+
+.graphBox {
+  flex: 1;
+}
+
+.info {
+  flex: 1;
+}
+
+@media (max-width: 990px) {
+  .graph_row {
+    flex-direction: column;
+  }
+
+  .graphBox {
+    flex: 0 50%;
+  }
 }
 
 .graph_headline {

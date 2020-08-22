@@ -2,8 +2,17 @@
   flex: 1;
 }
 
-.infoBox:not(:last-child) {
-  margin-right: 10px;
+@media (max-width: 900px) {
+  .infoBox {
+    flex: 0 45%;
+    margin: 5px;
+  }
+}
+
+@media (min-width: 900px) {
+  .infoBox:not(:last-child) {
+    margin-right: 10px;
+  }
 }
 
 .infoBox--selected {

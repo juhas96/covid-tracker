@@ -86,7 +86,7 @@ function CountryDetail() {
               </Card>
             </div>
 
-            <div className="infoBox">
+            <div className="graphBox">
               <Card>
                 <CardContent>
                   <h4 className="graph_headline">Spread over time</h4>
@@ -102,7 +102,7 @@ function CountryDetail() {
           </div>
 
           <div className="graph_row">
-            <div className="infoBox">
+            <div className="graphBox">
               <Card>
                 <CardContent>
                   <h4 className="graph_headline">Daily new deaths</h4>
@@ -116,7 +116,7 @@ function CountryDetail() {
               </Card>
             </div>
 
-            <div className="infoBox">
+            <div className="graphBox">
               <Card>
                 <CardContent>
                   <h4 className="graph_headline">Deaths over time</h4>
